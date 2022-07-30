@@ -1,0 +1,63 @@
+{
+  "name": "api-challenge",
+  "version": "1.0.0",
+  "description": "Queue API Challenge",
+  "main": "app.js",
+  "private": true,
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">=1.22",
+    "node": "14"
+  },
+  "scripts": {
+    "bundle": "node scripts/bundle.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "poststart": "npm run stop:postgres || true && npm run stop:elasticmq || true",
+    "setup": "npm run setup:postgres && sleep 2 && npm run setup:db",
+    "setup:db": "docker exec -it postgres createdb --username=root --owner=root db",
+    "setup:postgres": "docker run --name postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=password -d postgres:12-alpine",
+    "start": "npm run setup && npm run start:servers",
+    "start:elasticmq": "docker run --name elasticmq -t -d -p 9324:9324 -p 9325:9325 -v `pwd`/custom.conf:/opt/elasticmq.conf softwaremill/elasticmq",
+    "start:servers": "concurrently \"npm run start:elasticmq\" \"sleep 2 && node app.js\"",
+    "stop:elasticmq": "docker rm $(docker stop elasticmq) &>/dev/null",
+    "stop:postgres": "docker rm $(docker stop postgres) &>/dev/null",
+    "test": "jest unit --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordmax12/api-challenge.git"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1181.0",
+    "body-parser": "^1.20.0",
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "puppeteer": "^15.5.0",
+    "sequelize": "^6.21.3",
+    "sqs-consumer": "^5.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.1.1",
+    "jest-environment-node": "^28.1.1",
+    "prettier": "^2.7.1"
+  },
+  "keywords": [],
+  "author": "Jordan Max",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordmax12/api-challenge/issues"
+  },
+  "homepage": "https://github.com/jordmax12/api-challenge#readme"
+}

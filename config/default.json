@@ -1,0 +1,18 @@
+{
+    "db": {
+      "url": "postgres://root:password@localhost:5432/db"
+    },
+    "sequelize": {
+      "HOST": "localhost",
+      "USER": "root",
+      "PASSWORD": "password",
+      "DB": "db",
+      "dialect": "postgres",
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    }
+}
