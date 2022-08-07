@@ -1,3 +1,5 @@
+# Vizion API Challenge
+
 # Table of Contents
 - [Setting Up](#setting-up)
 - [Resources](#resources)
@@ -9,7 +11,7 @@
 - [Postman Collection](#postman-collection)
 - [Notes](#notes)
 - [NPM and Yarn](#npm-and-yarn)
-- [Requirements](#queue-api-challenge)
+- [Requirements](#vizion-api-challenge)
 # Setting Up
 - Install [NodeJS](https://nodejs.org/en/)
 - Install [Docker](https://www.docker.com/products/docker-desktop/)
@@ -31,7 +33,7 @@
 - [Puppeteer](https://pptr.dev/)
 
 # How It Works
-![LucidChart Diagram](public/lucid.png?raw=true "LucidChart Diagram")
+![LucidChart Diagram](public/vizion.png?raw=true "LucidChart Diagram")
 
 # Repo Design Pattern
 ![Model Logic Controller](public/MLCdiagram.png?raw=true "Model Logic Controller")
@@ -51,7 +53,7 @@ Not that this was necessary but I find it easier to organize and break down my p
 Simple run `yarn test`.
 
 # Postman Collection
-[Postman Collection](public/challenge.postman_collection.json)
+[Postman Collection](public/vizion.json)
 
 # Notes
 - Changes to requirements
@@ -72,7 +74,7 @@ Simple run `yarn test`.
 # NPM and Yarn
 So I used yarn for dependency management instead of npm. Generally I like some features of yarn over npm. With that said, you might notice we use both yarn and npm in the package json. The reason for this is because only npm supports hooks for scripts, yarn does not. So we use yarn to manage dependencies, and use npm to execute scripts.
 
-# Queue API Challenge
+# Vizion API Challenge
 
 :wave: Hi there!
 
